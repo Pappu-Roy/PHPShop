@@ -5,14 +5,29 @@ echo '</main>';
 // Footer content
 ?>
 <footer class="bg-gray-800 text-white py-12">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
+    <div class="container mx-auto px-1">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+            <div class="ml-[120px]">
                 <h3 class="text-xl font-bold mb-4">PHPShop</h3>
-                <p class="text-gray-400">The best e-commerce platform built with PHP and Tailwind CSS.</p>
+                <p class="text-gray-400">The best e-commerce platform in BD.</p>
+                
+                <div class="mt-6 flex space-x-4">
+                    <a href="https://www.linkedin.com" target="_blank" class="text-gray-400 hover:text-blue-600 transition">
+                        <i class="fab fa-linkedin text-4xl"></i>
+                    </a>
+                    <a href="https://www.facebook.com" target="_blank" class="text-gray-400 hover:text-blue-600 transition">
+                        <i class="fab fa-facebook text-4xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="text-gray-400 hover:text-red-300 transition">
+                        <i class="fab fa-instagram text-4xl"></i>
+                    </a>
+                    <a href="https://www.youtube.com" target="_blank" class="text-gray-400 hover:text-red-600 transition">
+                        <i class="fab fa-youtube text-4xl"></i>
+                    </a>
+                </div>
             </div>
             
-            <div>
+            <div class="ml-[190px]">
                 <h4 class="font-semibold mb-4">Quick Links</h4>
                 <ul class="space-y-2">
                     <li><a href="<?php echo BASE_URL; ?>" class="text-gray-400 hover:text-white transition">Home</a></li>
@@ -22,7 +37,7 @@ echo '</main>';
                 </ul>
             </div>
             
-            <div>
+            <div class="ml-[140px]">
                 <h4 class="font-semibold mb-4">Customer Service</h4>
                 <ul class="space-y-2">
                     <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
@@ -32,16 +47,16 @@ echo '</main>';
                 </ul>
             </div>
             
-            <div>
+            <div class="ml-[120px]">
                 <h4 class="font-semibold mb-4">Contact Info</h4>
                 <ul class="space-y-2">
                     <li class="flex items-center space-x-2">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span class="text-gray-400">123 PHP Street, Web City</span>
+                        <span class="text-gray-400">Dhaka, Bangladesh</span>
                     </li>
                     <li class="flex items-center space-x-2">
                         <i class="fas fa-phone"></i>
-                        <span class="text-gray-400">+1 (555) 123-4567</span>
+                        <span class="text-gray-400">+88015XXXXXXXX</span>
                     </li>
                     <li class="flex items-center space-x-2">
                         <i class="fas fa-envelope"></i>
@@ -57,7 +72,6 @@ echo '</main>';
     </div>
 </footer>
 
-<!-- Mobile Menu JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.querySelector('#mobile-menu-button');

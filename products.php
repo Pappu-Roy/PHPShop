@@ -72,16 +72,13 @@ if ($cat_result) {
 }
 ?>
 
-<!-- Page Header -->
 <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900">Our Products</h1>
     <p class="text-gray-600">Discover our amazing collection of products</p>
 </div>
 
-<!-- Filters and Search -->
 <div class="bg-white p-6 rounded-lg shadow-md mb-8">
     <form method="GET" class="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <!-- Search -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" 
@@ -89,7 +86,6 @@ if ($cat_result) {
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
         </div>
         
-        <!-- Category Filter -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
             <select name="category" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
@@ -102,7 +98,6 @@ if ($cat_result) {
             </select>
         </div>
         
-        <!-- Price Range -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Min Price</label>
             <input type="number" name="min_price" value="<?php echo htmlspecialchars($min_price); ?>" 
@@ -117,7 +112,6 @@ if ($cat_result) {
                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
         </div>
         
-        <!-- Sort -->
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
             <select name="sort" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
@@ -129,7 +123,6 @@ if ($cat_result) {
             </select>
         </div>
         
-        <!-- Filter Buttons -->
         <div class="md:col-span-5 flex space-x-4 pt-4">
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
                 Apply Filters
@@ -141,54 +134,59 @@ if ($cat_result) {
     </form>
 </div>
 
-<!-- Products Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-    <?php if(count($products) > 0): ?>
-        <?php foreach($products as $product): ?>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                <img src="<?php echo $product['image_url'] ?: 'https://via.placeholder.com/300x200'; ?>" 
-                     alt="<?php echo htmlspecialchars($product['name']); ?>" 
-                     class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-semibold text-lg"><?php echo htmlspecialchars($product['name']); ?></h3>
-                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
-                            <?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?>
-                        </span>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-2"><?php echo htmlspecialchars($product['description']); ?></p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-blue-600 font-bold"><?php echo format_price($product['price']); ?></span>
-                        <span class="text-sm text-gray-500"><?php echo $product['stock_quantity']; ?> in stock</span>
-                    </div>
-                    <div class="mt-4 flex space-x-2">
-                        <a href="product.php?id=<?php echo $product['id']; ?>" 
-                           class="flex-1 text-center bg-gray-200 text-gray-700 py-2 px-3 rounded hover:bg-gray-300 transition">
-                            View Details
-                        </a>
-                        <?php if($product['stock_quantity'] > 0): ?>
-                            <form action="add_to_cart.php" method="post" class="flex-1">
-                                <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </form>
-                        <?php endif; ?>
-                    </div>
+<div class="bg-gray-200 py-12 mb-16 rounded-lg">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <?php if(count($products) > 0): ?>
+                <?php foreach($products as $product): ?>
+                    <a href="product.php?id=<?php echo $product['id']; ?>" class="block">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition flex flex-col h-full">
+                            <div class="h-48 flex items-center justify-center bg-gray-100">
+                                <img src="<?php echo $product['image_url'] ?: 'https://via.placeholder.com/300x200'; ?>"
+                                     alt="<?php echo htmlspecialchars($product['name']); ?>"
+                                     class="max-h-full max-w-full object-contain">
+                            </div>
+                            <div class="p-4 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h3 class="font-semibold text-lg"><?php echo htmlspecialchars($product['name']); ?></h3>
+                                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                                            <?php echo htmlspecialchars($product['category_name'] ?? 'Uncategorized'); ?>
+                                        </span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-4 line-clamp-2"><?php echo htmlspecialchars($product['description']); ?></p>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center mb-4">
+                                        <span class="text-blue-600 font-bold"><?php echo format_price($product['price']); ?></span>
+                                        <span class="text-sm text-gray-500"><?php echo $product['stock_quantity']; ?> in stock</span>
+                                    </div>
+                                    <?php if($product['stock_quantity'] > 0): ?>
+                                        <form action="add_to_cart.php" method="post" onclick="event.stopPropagation();" class="mt-auto">
+                                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition">
+                                                <i class="fas fa-cart-plus"></i> Add to Cart
+                                            </button>
+                                        </form>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-600">No products found</h3>
+                    <p class="text-gray-500">Try adjusting your search filters</p>
+                    <a href="products.php" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                        Clear Filters
+                    </a>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <div class="col-span-full text-center py-12">
-            <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
-            <h3 class="text-xl font-semibold text-gray-600">No products found</h3>
-            <p class="text-gray-500">Try adjusting your search filters</p>
-            <a href="products.php" class="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-                Clear Filters
-            </a>
+            <?php endif; ?>
         </div>
-    <?php endif; ?>
+    </div>
 </div>
 
 <?php

@@ -87,11 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['change_password'])) {
 
 // Get user orders
 $orders = [];
-$orders_sql = "SELECT o.id, o.total_amount, o.status, o.created_at, COUNT(oi.id) as item_count 
+$orders_sql = "SELECT o.id, o.total_amount, o.status, o.created_at 
                FROM orders o 
-               JOIN order_items oi ON o.id = oi.order_id 
                WHERE o.user_id = ? 
-               GROUP BY o.id 
                ORDER BY o.created_at DESC 
                LIMIT 5";
 $orders_stmt = $mysqli->prepare($orders_sql);
@@ -200,16 +198,7 @@ $orders_stmt->close();
                         </div>
                         <h3 class="font-semibold">Wishlist</h3>
                         <p class="text-2xl font-bold text-green-600">0</p>
-                        <a href="wishlist.php" class="text-green-600 hover:text-green-800 text-sm">View your wishlist</a>
-                    </div>
-                    
-                    <div class="text-center p-4 bg-purple-50 rounded-lg">
-                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-map-marker-alt text-purple-600 text-2xl"></i>
-                        </div>
-                        <h3 class="font-semibold">Addresses</h3>
-                        <p class="text-2xl font-bold text-purple-600">0</p>
-                        <a href="addresses.php" class="text-purple-600 hover:text-purple-800 text-sm">Manage addresses</a>
+                        <a href="#" class="text-green-600 hover:text-green-800 text-sm">View your wishlist</a>
                     </div>
                 </div>
             </div>
@@ -230,7 +219,6 @@ $orders_stmt->close();
                                         <?php echo ucfirst($order['status']); ?>
                                     </span>
                                 </div>
-                                <p class="text-gray-600 text-sm"><?php echo $order['item_count']; ?> items</p>
                                 <p class="text-gray-600 text-sm">Total: <?php echo format_price($order['total_amount']); ?></p>
                                 <p class="text-gray-500 text-xs"><?php echo date('M j, Y', strtotime($order['created_at'])); ?></p>
                             </div>

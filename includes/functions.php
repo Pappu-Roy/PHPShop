@@ -1,19 +1,20 @@
 <?php
-// Redirect function
+// Redirect to another page
 function redirect($url) {
     header("Location: " . $url);
     exit();
 }
 
-// Check if user is logged in
+// Check if user is logged in - FIXED VERSION
 function is_logged_in() {
-    return isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
+    return isset($_SESSION['loggedin']) && ($_SESSION['loggedin'] === true || $_SESSION['loggedin'] === 1);
 }
 
-// Get category name
+// Get category name by ID
 function get_category_name($category_id) {
     global $mysqli;
     
+    // Check if connection is valid
     if (!$mysqli || $mysqli->connect_errno) {
         return "Uncategorized";
     }
@@ -41,11 +42,12 @@ function format_price($price) {
 
 // Get cart item count
 function get_cart_count() {
-    if(isset($_SESSION['user_id']) && $_SESSION['user_id']) {
-        global $mysqli;
-        $user_id = $_SESSION['user_id'];
+    // Check if user is logged in and connection is valid
+    if(isset($_SESSION['id']) && $_SESSION['id'] && isset($GLOBALS['mysqli']) && $GLOBALS['mysqli'] instanceof mysqli && !$GLOBALS['mysqli']->connect_errno) {
+        $user_id = $_SESSION['id'];
         $sql = "SELECT SUM(quantity) as total FROM cart WHERE user_id = ?";
-        if($stmt = $mysqli->prepare($sql)){
+        
+        if($stmt = $GLOBALS['mysqli']->prepare($sql)){
             $stmt->bind_param("i", $user_id);
             if($stmt->execute()){
                 $stmt->bind_result($total);

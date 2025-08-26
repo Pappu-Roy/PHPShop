@@ -1,20 +1,6 @@
 <?php
-// Start session with proper configuration
+// Fix session configuration - SIMPLIFIED VERSION
 if (session_status() === PHP_SESSION_NONE) {
-    ini_set('session.use_only_cookies', 1);
-    ini_set('session.use_strict_mode', 1);
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', 0);
-    
-    session_set_cookie_params([
-        'lifetime' => 86400,
-        'path' => '/',
-        'domain' => $_SERVER['HTTP_HOST'],
-        'secure' => false,
-        'httponly' => true,
-        'samesite' => 'Lax'
-    ]);
-    
     session_start();
 }
 
@@ -37,12 +23,20 @@ $mysqli->set_charset("utf8");
 // Base URL
 define('BASE_URL', 'http://localhost:8080/');
 
-// Initialize session variables
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['user_id'] = null;
-    $_SESSION['username'] = null;
-    $_SESSION['email'] = null;
+// Initialize session variables if not set - FIXED
+if (!isset($_SESSION['loggedin'])) {
     $_SESSION['loggedin'] = false;
+}
+if (!isset($_SESSION['id'])) {
+    $_SESSION['id'] = null;
+}
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = null;
+}
+if (!isset($_SESSION['email'])) {
+    $_SESSION['email'] = null;
+}
+if (!isset($_SESSION['is_admin'])) {
     $_SESSION['is_admin'] = false;
 }
 

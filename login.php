@@ -1,7 +1,8 @@
 <?php
+session_start();
 require_once 'includes/config.php';
 
-// Check if user is already logged in
+// Check if already logged in
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if(isset($_SESSION["is_admin"]) && $_SESSION["is_admin"]){
         header("location: admin/dashboard.php");
@@ -11,63 +12,53 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;
 }
 
-// Initialize variables
 $email = $password = "";
 $login_err = "";
 
-// Process form data when submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     
-    // Check if email is empty
     if(empty(trim($_POST["email"]))){
         $login_err = "Please enter your email.";
     } else{
         $email = trim($_POST["email"]);
     }
     
-    // Check if password is empty
     if(empty(trim($_POST["password"]))){
         $login_err = "Please enter your password.";
     } else{
         $password = trim($_POST["password"]);
     }
     
-    // Validate credentials
     if(empty($login_err)){
         $sql = "SELECT id, username, email, password, is_admin FROM users WHERE email = ?";
         
         if($stmt = $mysqli->prepare($sql)){
-            $stmt->bind_param("s", $param_email);
-            $param_email = $email;
+            $stmt->bind_param("s", $email);
             
             if($stmt->execute()){
                 $stmt->store_result();
                 
-                // Check if email exists
                 if($stmt->num_rows == 1){
                     $stmt->bind_result($id, $username, $db_email, $hashed_password, $is_admin);
-                    if($stmt->fetch()){
-                        if(password_verify($password, $hashed_password)){
-                            // Password is correct, start a new session
-                            session_regenerate_id();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
-                            $_SESSION["email"] = $db_email;
-                            $_SESSION["is_admin"] = $is_admin;
-                            
-                            // Redirect user based on admin status
-                            if($is_admin){
-                                header("location: admin/dashboard.php");
-                            } else{
-                                header("location: index.php");
-                            }
-                            exit;
+                    $stmt->fetch();
+                    
+                    if(password_verify($password, $hashed_password)){
+                        // Password is correct - SET SESSION WITH BOOLEAN VALUES
+                        $_SESSION["loggedin"] = true;
+                        $_SESSION["id"] = $id;
+                        $_SESSION["username"] = $username;
+                        $_SESSION["email"] = $db_email;
+                        $_SESSION["is_admin"] = (bool)$is_admin;
+                        
+                        // Redirect based on admin status
+                        if($is_admin){
+                            header("location: admin/dashboard.php");
                         } else{
-                            $login_err = "Invalid email or password.";
+                            header("location: index.php");
                         }
+                        exit;
+                    } else{
+                        $login_err = "Invalid email or password.";
                     }
                 } else{
                     $login_err = "Invalid email or password.";
@@ -89,15 +80,17 @@ require_once 'includes/header.php';
         <p class="text-blue-100">Welcome back!</p>
     </div>
     
-    <?php 
-    if(!empty($login_err)){
-        echo '<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative m-4" role="alert">' . $login_err . '</div>';
-    }
+    <?php if(!empty($login_err)): ?>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative m-4" role="alert">
+            <?php echo $login_err; ?>
+        </div>
+    <?php endif; ?>
     
-    if(isset($_GET['registered']) && $_GET['registered'] == 1){
-        echo '<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative m-4" role="alert">Registration successful! Please login.</div>';
-    }
-    ?>
+    <?php if(isset($_GET['registered']) && $_GET['registered'] == 1): ?>
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative m-4" role="alert">
+            Registration successful! Please login.
+        </div>
+    <?php endif; ?>
     
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="p-6 space-y-4">
         <div>

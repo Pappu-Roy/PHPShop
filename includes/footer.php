@@ -12,7 +12,7 @@ echo '</main>';
                 <p class="text-gray-400">The best e-commerce platform in BD.</p>
                 
                 <div class="mt-6 flex space-x-4">
-                    <a href="https://www.linkedin.com" target="_blank" class="text-gray-400 hover:text-blue-600 transition">
+                    <a href="https://www.linkedin.com/in/pappu-roy-6526192a1/" target="_blank" class="text-gray-400 hover:text-blue-600 transition">
                         <i class="fab fa-linkedin text-4xl"></i>
                     </a>
                     <a href="https://www.facebook.com" target="_blank" class="text-gray-400 hover:text-blue-600 transition">
@@ -21,7 +21,7 @@ echo '</main>';
                     <a href="https://www.instagram.com" target="_blank" class="text-gray-400 hover:text-red-300 transition">
                         <i class="fab fa-instagram text-4xl"></i>
                     </a>
-                    <a href="https://www.youtube.com" target="_blank" class="text-gray-400 hover:text-red-600 transition">
+                    <a href="https://www.youtube.com/@PappusClassroom" target="_blank" class="text-gray-400 hover:text-red-600 transition">
                         <i class="fab fa-youtube text-4xl"></i>
                     </a>
                 </div>
@@ -40,10 +40,10 @@ echo '</main>';
             <div class="ml-[140px]">
                 <h4 class="font-semibold mb-4">Customer Service</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="faq.php" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    <li><a href="returns.php" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
+                    <li><a href="shipping.php" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
+                    <li><a href="privacy.php" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
                 </ul>
             </div>
             

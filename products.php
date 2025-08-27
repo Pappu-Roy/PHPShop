@@ -9,17 +9,21 @@ $min_price = isset($_GET['min_price']) ? $_GET['min_price'] : '';
 $max_price = isset($_GET['max_price']) ? $_GET['max_price'] : '';
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'name';
 
-// Build the SQL query with filters
+// Build the base SQL query
 $sql = "SELECT p.*, c.name as category_name 
         FROM products p 
-        LEFT JOIN categories c ON p.category_id = c.id 
-        WHERE p.stock_quantity > 0";
+        LEFT JOIN categories c ON p.category_id = c.id";
 
+// Prepare filter conditions and parameters
+$filter_conditions = [];
 $params = [];
 $types = "";
 
+// Add stock filter (always active)
+$filter_conditions[] = "p.stock_quantity > 0";
+
 if (!empty($search)) {
-    $sql .= " AND (p.name LIKE ? OR p.description LIKE ?)";
+    $filter_conditions[] = "(p.name LIKE ? OR p.description LIKE ?)";
     $search_term = "%$search%";
     $params[] = $search_term;
     $params[] = $search_term;
@@ -27,21 +31,26 @@ if (!empty($search)) {
 }
 
 if (!empty($category_id) && is_numeric($category_id)) {
-    $sql .= " AND p.category_id = ?";
+    $filter_conditions[] = "p.category_id = ?";
     $params[] = $category_id;
     $types .= "i";
 }
 
 if (!empty($min_price) && is_numeric($min_price)) {
-    $sql .= " AND p.price >= ?";
+    $filter_conditions[] = "p.price >= ?";
     $params[] = $min_price;
     $types .= "d";
 }
 
 if (!empty($max_price) && is_numeric($max_price)) {
-    $sql .= " AND p.price <= ?";
+    $filter_conditions[] = "p.price <= ?";
     $params[] = $max_price;
     $types .= "d";
+}
+
+// Combine all filter conditions into the WHERE clause
+if (!empty($filter_conditions)) {
+    $sql .= " WHERE " . implode(" AND ", $filter_conditions);
 }
 
 // Add sorting
@@ -57,7 +66,7 @@ $sql .= " ORDER BY " . ($sort_options[$sort] ?? 'p.name ASC');
 
 // Prepare and execute the query
 $stmt = $mysqli->prepare($sql);
-if (!empty($params)) {
+if ($types) {
     $stmt->bind_param($types, ...$params);
 }
 $stmt->execute();
@@ -74,7 +83,7 @@ if ($cat_result) {
 
 <div class="mb-8">
     <h1 class="text-3xl font-bold text-gray-900">Our Products</h1>
-    <p class="text-gray-600">Discover our amazing collection of products</p>
+    <p class="text-violet-600">Discover our amazing collection of products</p>
 </div>
 
 <div class="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -140,8 +149,8 @@ if ($cat_result) {
             <?php if(count($products) > 0): ?>
                 <?php foreach($products as $product): ?>
                     <a href="product.php?id=<?php echo $product['id']; ?>" class="block">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition flex flex-col h-full">
-                            <div class="h-48 flex items-center justify-center bg-gray-100">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform duration-300 transform hover:scale-105 flex flex-col h-full">
+                            <div class="h-48 flex items-center justify-center bg-white">
                                 <img src="<?php echo $product['image_url'] ?: 'https://via.placeholder.com/300x200'; ?>"
                                      alt="<?php echo htmlspecialchars($product['name']); ?>"
                                      class="max-h-full max-w-full object-contain">

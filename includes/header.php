@@ -28,7 +28,7 @@ $cart_count = is_db_connected() ? get_cart_count() : 0;
 </head>
 <body class="bg-gray-100">
     <!-- Navigation Bar -->
-    <nav class="bg-blue-600 text-white shadow-lg">
+    <nav class="bg-blue-950 text-white shadow-lg">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->

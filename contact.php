@@ -57,7 +57,7 @@ require_once 'includes/header.php';
                         </div>
                         <div>
                             <h3 class="font-semibold">Address</h3>
-                            <p class="text-gray-600">123 PHP Street, Web City</p>
+                            <p class="text-gray-600">Dhaka, Bangladesh</p>
                         </div>
                     </div>
                     
@@ -67,7 +67,7 @@ require_once 'includes/header.php';
                         </div>
                         <div>
                             <h3 class="font-semibold">Phone</h3>
-                            <p class="text-gray-600">+1 (555) 123-4567</p>
+                            <p class="text-gray-600">+88015XXXXXXXX</p>
                         </div>
                     </div>
                     
@@ -87,9 +87,8 @@ require_once 'includes/header.php';
                         </div>
                         <div>
                             <h3 class="font-semibold">Hours</h3>
-                            <p class="text-gray-600">Monday-Friday: 9AM-5PM</p>
-                            <p class="text-gray-600">Saturday: 10AM-4PM</p>
-                            <p class="text-gray-600">Sunday: Closed</p>
+                            <p class="text-gray-600">Saturday-Thursday: 8AM-5PM</p>
+                            <p class="text-gray-600">Friday: Closed</p>
                         </div>
                     </div>
                 </div>

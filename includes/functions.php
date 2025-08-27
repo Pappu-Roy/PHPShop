@@ -85,10 +85,11 @@ function get_product($id) {
 }
 
 // Get featured products
+// New code to get featured products (shows all products regardless of stock)
 function get_featured_products($limit = 8) {
     global $mysqli;
     $products = [];
-    $sql = "SELECT * FROM products WHERE stock_quantity > 0 ORDER BY created_at DESC LIMIT ?";
+    $sql = "SELECT * FROM products ORDER BY name ASC LIMIT ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("i", $limit);
     $stmt->execute();

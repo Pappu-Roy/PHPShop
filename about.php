@@ -9,7 +9,7 @@ require_once 'includes/header.php';
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">Our Story</h2>
         <p class="text-gray-700 mb-4">
-            PHPShop was founded in 2023 with a simple mission: to provide high-quality products 
+            PHPShop was founded in 2025 with a simple mission: to provide high-quality products 
             with exceptional customer service. We believe that shopping online should be easy, 
             secure, and enjoyable.
         </p>

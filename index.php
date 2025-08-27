@@ -22,8 +22,8 @@ $featured_products = get_featured_products(8);
             <?php if(count($featured_products) > 0): ?>
                 <?php foreach($featured_products as $product): ?>
                     <a href="product.php?id=<?php echo $product['id']; ?>" class="block">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition flex flex-col h-full">
-                            <div class="h-48 flex items-center justify-center bg-gray-100">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-transform duration-300 transform hover:scale-105 flex flex-col h-full">
+                            <div class="h-48 flex items-center justify-center bg-white">
                                 <img src="<?php echo $product['image_url'] ?: 'https://via.placeholder.com/300x200'; ?>"
                                      alt="<?php echo htmlspecialchars($product['name']); ?>"
                                      class="max-h-full max-w-full object-contain">

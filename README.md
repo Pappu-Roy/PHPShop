@@ -42,5 +42,5 @@ Pappu Roy | CSE SUST | Aspiring Software Engineer
 
 ### 🤝 Connect with Me
 
-* **LinkedIn:** [Pappu Roy](https://www.linkedin.com/in/pappu-roy-6526192a1/)
-* **LinkedIn:** [Pappu Roy](https://github.com/Pappu-Roy)
+* **LinkedIn:** <a href="https://www.linkedin.com/in/pappu-roy-6526192a1/" target="_blank">Pappu Roy</a>
+* **GitHub:** <a href="https://github.com/Pappu-Roy" target="_blank">Pappu Roy</a>

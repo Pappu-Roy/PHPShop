@@ -3,8 +3,6 @@
 PHPShop is a complete e-commerce solution built with PHP, MySQL, and Tailwind CSS. It's designed to be a lightweight, fast, and fully functional online store for showcasing products, managing orders, and handling user authentication.
 
 -----
-![E-commerce Homepage Screenshot](<img width="1890" height="869" alt="image" src="https://prnt.sc/2Jk9vLPcdM0v" />)
-<img src="https://prnt.sc/lC3w1tGud8NW">
 
 ### ✨ Features
 

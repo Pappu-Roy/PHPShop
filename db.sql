@@ -74,6 +74,5 @@ INSERT INTO products (name, description, price, image_url, category_id, stock_qu
 ('Jeans', 'Classic blue jeans', 49.99, 'https://via.placeholder.com/300x200?text=Jeans', 2, 75),
 ('Programming Book', 'Learn programming with this book', 39.99, 'https://via.placeholder.com/300x200?text=Book', 3, 30);
 
--- Create admin user (password: admin123)
+-- Create admin user 
 INSERT INTO users (username, email, password, is_admin) VALUES 
-('admin', 'admin@phpshop.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1);

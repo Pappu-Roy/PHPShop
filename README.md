@@ -4,7 +4,7 @@ PHPShop is a complete e-commerce solution built with PHP, MySQL, and Tailwind CS
 
 -----
 
-![PHPShop E-commerce Homepage](https://prnt.sc/lC3w1tGud8NW)
+<img src="https://prnt.sc/lC3w1tGud8NW">
 
 ### ✨ Features
 

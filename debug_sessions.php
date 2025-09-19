@@ -17,7 +17,7 @@ echo "Session Writable: " . (is_writable($session_path) ? 'Yes' : 'No') . "<br>"
 
 // Test session writing
 $_SESSION['debug_test'] = 'Session is working!';
-echo "Session write test: " . (isset($_SESSION['debug_test']) ? '✅ SUCCESS' : '❌ FAILED') . "<br>";
+echo "Session write test: " . (isset($_SESSION['debug_test']) ? 'SUCCESS' : 'FAILED') . "<br>";
 
 // Show current session data
 echo "<h3>Current Session Data:</h3>";
@@ -27,7 +27,7 @@ echo "</pre>";
 
 // Test database connection
 require_once 'includes/config.php';
-echo "Database connection: " . (!$mysqli->connect_error ? '✅ SUCCESS' : '❌ FAILED') . "<br>";
+echo "Database connection: " . (!$mysqli->connect_error ? 'SUCCESS' : 'FAILED') . "<br>";
 
 // Test form for session persistence
 echo "<h3>Test Session Persistence:</h3>";
@@ -42,7 +42,7 @@ if (isset($_POST['test_session'])) {
 }
 
 if (isset($_SESSION['test_count'])) {
-    echo "Session persistence test: ✅ SUCCESS (Count: " . $_SESSION['test_count'] . ")<br>";
+    echo "Session persistence test: SUCCESS (Count: " . $_SESSION['test_count'] . ")<br>";
 }
 
 $mysqli->close();

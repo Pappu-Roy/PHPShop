@@ -19,7 +19,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     $check_orders->store_result();
     
     if ($check_orders->num_rows > 0) {
-        $message = "❌ Cannot delete product. It is part of a previous order.";
+        $message = "Cannot delete product. It is part of a previous order.";
     } else {
         // Now delete from cart
         $delete_cart = $mysqli->prepare("DELETE FROM cart WHERE product_id = ?");

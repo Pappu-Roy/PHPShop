@@ -32,9 +32,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
         $delete_product->bind_param("i", $product_id);
         
         if ($delete_product->execute()) {
-            $message = "✅ Product deleted successfully!";
+            $message = "Product deleted successfully!";
         } else {
-            $message = "❌ Error deleting product: " . $mysqli->error;
+            $message = "Error deleting product: " . $mysqli->error;
         }
         $delete_product->close();
     }
@@ -42,7 +42,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
 }
 
 if (isset($_GET['success']) && $_GET['success'] == 1) {
-    $message = "✅ Product added/updated successfully!";
+    $message = "Product added/updated successfully!";
 }
 
 $products = [];

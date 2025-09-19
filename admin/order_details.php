@@ -27,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
         $stmt_update->bind_param("si", $new_status, $order_id);
         
         if ($stmt_update->execute()) {
-            $message = "✅ Order status updated to '{$new_status}' successfully!";
+            $message = "Order status updated to '{$new_status}' successfully!";
         } else {
-            $message = "❌ Failed to update order status.";
+            $message = "Failed to update order status.";
         }
         $stmt_update->close();
     } else {
-        $message = "❌ Invalid status provided.";
+        $message = "Invalid status provided.";
     }
 }
 

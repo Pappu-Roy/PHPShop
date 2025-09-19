@@ -66,13 +66,7 @@ INSERT INTO categories (name, description) VALUES
 ('Clothing', 'Fashionable clothing for everyone'),
 ('Books', 'Books for all ages and interests');
 
-INSERT INTO products (name, description, price, image_url, category_id, stock_quantity) VALUES 
-('Smartphone X', 'Latest smartphone with amazing features', 699.99, 'https://via.placeholder.com/300x200?text=Smartphone', 1, 50),
-('Laptop Pro', 'Powerful laptop for work and play', 1299.99, 'https://via.placeholder.com/300x200?text=Laptop', 1, 25),
-('Wireless Headphones', 'Noise-cancelling wireless headphones', 199.99, 'https://via.placeholder.com/300x200?text=Headphones', 1, 100),
-('Cotton T-Shirt', 'Comfortable cotton t-shirt', 24.99, 'https://via.placeholder.com/300x200?text=T-Shirt', 2, 200),
-('Jeans', 'Classic blue jeans', 49.99, 'https://via.placeholder.com/300x200?text=Jeans', 2, 75),
-('Programming Book', 'Learn programming with this book', 39.99, 'https://via.placeholder.com/300x200?text=Book', 3, 30);
+--INSERT INTO products (name, description, price, image_url, category_id, stock_quantity) VALUES
 
 -- Create admin user 
 INSERT INTO users (username, email, password, is_admin) VALUES 
